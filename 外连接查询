@@ -1,0 +1,32 @@
+外连接查询：
+LEFT JOIN左连接：
+首先创建orders的表：
+Create table orders
+（
+O_num     int   not null AUTO_INCREMENT,
+O_date   datetime   not null,
+C_id     int    not null,
+Permary  key (o_num)
+);
+
+INSERT INTO orders (o_num,o_data,c_id)
+VALUES(30001,’2008-09-01’,10001),
+(30002,’2008-09-12’,1003),
+(30003,’2008-09-30’,1004),
+(30004,’2008-10-03’,1005),
+(30005,’2008-10-08’,1001);
+
+
+查询所有客户，包括没有订单的客户:
+LEFT JOIN 左连接
+Select customers.c_id, orders.o_num 
+FROM customers LEFT OUTR JOIN orders
+ON customers.c_id =orders.c_id;
+//显示结果为5条，1002的客户没有下单，所以没有只取出了customers的信息，而orders的信息对应null为空
+RIGHT JOIN 右连接
+Select customers.c_id, orders.o_num 
+FROM customers RIGHT OUTR JOIN orders 
+ON customers.c_id =orders.c_id;
+//显示结果为5条，30004的客户没有下单，所以没有只取出了customers的信息，而orders的信息对应null为空
+
+
