@@ -1,0 +1,56 @@
+create database xiong;
+use xiong;
+create table fruits
+(
+f_id char(10) not null,
+s_id int      not null,
+f_name char(255) not null,
+f_price decimal(8,2) not null,
+primary key(f_id)
+);
+
+insert into fruits (f_id,s_id,f_name,f_price)
+values('a1',101,'apple',5.2),
+('b1',101,'blackberry',10.2),
+('bs1',102,'orange',11.2),
+('bs21',105,'melon',8.2),
+('t1',102,'banana',10.3),
+('t2',102,'grape',5.3),
+('o2',103,'coconut',9.2),
+('c0',101,'cherry',3.2),
+('a2',103,'apricot',2.2),
+('12',104,'lemon',6.4),
+('b2',102,'berry',7.6),
+('m1',105,'mango',15.7),
+('m2',102,'xbabay',2.6),
+('t4',102,'xbababa',3.6),
+('m3',103,'xxtt',9.2),
+('b5',101,'xxxx',3.6);
+
+
+查询语句
+select f_id,f_name from fruits;
+
+select * from fruits;
+
+in（在什么里面）
+select s_id,f_name,f_price  from fruits  where s_id in (101,102)  order by f_name;
+
+not in
+select s_id,f_name,f_price  from fruits  where s_id not in (101,102)  order by f_name;
+
+
+between and
+select f_name,f_price  from fruits  where f_price between 2.00 and 10.20;
+
+not between and
+select f_name,f_price from fruits   where f_price not between 2.00（a） and 10.20（b）；
+//a>b才可以出来，不然就i是空
+
+like(以什么开头：'x%')
+select f_name,f_id  from fruits  where f_name like 'b%';
+
+like （含有什么字母：‘%x%’）
+select f_name,f_id  from fruits    where f_name like '%g%';
+
+7.2.13使用LIMIT限制查询结果的数量：LIMIT  [位置偏移量，]  行数
