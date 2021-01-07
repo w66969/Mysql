@@ -1,0 +1,6 @@
+复合条件查询连接查询
+内连接结果为1001的条件显示出来：
+//and是且的意思，作为条件要求命令
+SELECT customers.c_id,orders.o_num FROM customers INNER JOIN orders ON customers.c_id = adderss.c_id AND customers.c_id =10001;
+内连接查询并用排序显示：
+SELECT suppliers.s_id,s_name,f_name,f_price FROM fruits INNER JOIN suppliers ON fruits.s_id =suppliers.s_id ORDER BY fruits.s_id;
