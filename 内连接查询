@@ -1,0 +1,28 @@
+create table suppliers
+(
+s_id          int   not null  AUTO_INCREMENT,
+s_name    char(50)  not null,
+s_city       char(50)  not null,
+s_zip        char(50)  not null,
+s_call       char(50)  not null,
+PERMARY KEY （s_id)
+）；
+
+INSERT LNTO  suppliers (s_id, s_name,s_city,
+VALUES (101, ' rastFru1t Inc.','Tianjin', '3000','48075'),
+(102, 'LT Suppliers','Chongqing','400000','44333'),
+(103,'ACME', 'Shanghai', '200000', '90046'),
+(104,'FNK Inc.','Zhongshan', '528437','11111')
+(105, 'Good Set', 'Taiyuang','030000', '000', '22222'）,
+(106, 'Just Eat Ours', 'Beijing','010', '45678'）,
+('107,'DK Inc.', 'Zhengzhou','450000', '33332');
+
+DESC fruits;
+DESC suppliers;        //查询之前，先查看两个表的结构后发现有相同的字段s_id,所以可以通过s_id建立关系
+开始查询：
+SELECT suppliers.s_id,s_name,f_name,f_price  FORM fruits,suppliers WHERE furits.s_id=suppliers.s_id;  
+//容易理解，但影响查询性能
+使用INNER JOIN 语法建立内连接查询：//正规写法
+SELECT suppliers.s_id,s_name,f_name,f_price  FORM  fruits  INNER JOIN suppliers ON fruits.s_id=suppliers.s_id;
+查询f1.f_id=‘a1‘的水果供应商供应的水果种类
+SELECT f1.f_id,f1.f_name FROM fruits AS f1, fruits AS f2 WHERE f1.S_id=f2.s_id='a1';
