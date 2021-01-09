@@ -1,0 +1,111 @@
+查询指定记录
+select 字段名1，字段名2，……，字段名n  from 表名  where 查询条件
+
+带IN关键字的查询
+1.s_id为101，102 的记录
+mysql> select s_id,f_name,f_price from fruits where s_id  in (101,102) order by f_name;
++------+------------+---------+
+| s_id | f_name     | f_price |
++------+------------+---------+
+|  101 | apple      |    5.20 |
+|  102 | banana     |   10.30 |
+|  102 | berry      |    7.60 |
+|  101 | blackberry |   10.20 |
+|  101 | cherry     |    3.20 |
+|  102 | grape      |    5.30 |
+|  102 | orange     |   11.20 |
+|  102 | xbababa    |    3.60 |
+|  102 | xbabay     |    2.60 |
+|  101 | xxxx       |    3.60 |
++------+------------+---------+
+10 rows in set (0.07 sec)
+
+2.s_id既不为101，也不为102 的记录
+mysql>  select s_id,f_name,f_price from fruits where s_id not in (101,102) order by f_name;
++------+---------+---------+
+| s_id | f_name  | f_price |
++------+---------+---------+
+|  103 | apricot |    2.20 |
+|  103 | coconut |    9.20 |
+|  104 | lemon   |    6.40 |
+|  105 | mango   |   15.70 |
+|  105 | melon   |    8.20 |
+|  103 | xxtt    |    9.20 |
++------+---------+---------+
+6 rows in set (0.00 sec)
+
+带between and的查询范围
+mysql> select f_name,f_price from fruits where f_price between 2.00 and 10.20;
++------------+---------+
+| f_name     | f_price |
++------------+---------+
+| apple      |    5.20 |
+| blackberry |   10.20 |
+| melon      |    8.20 |
+| grape      |    5.30 |
+| coconut    |    9.20 |
+| cherry     |    3.20 |
+| apricot    |    2.20 |
+| lemon      |    6.40 |
+| berry      |    7.60 |
+| xbabay     |    2.60 |
+| xbababa    |    3.60 |
+| xxtt       |    9.20 |
+| xxxx       |    3.60 |
++------------+---------+
+13 rows in set (0.01 sec)
+
+
+mysql>  select f_name,f_price from fruits where f_price not between 2.00 and 10.20;
++--------+---------+
+| f_name | f_price |
++--------+---------+
+| orange |   11.20 |
+| banana |   10.30 |
+| mango  |   15.70 |
++--------+---------+
+3 rows in set (0.00 sec)
+
+ 带like的字符匹配查询
+1.百分号通配符%，匹配任意长度的字符，甚至包括零字符
+
+查找所有“b”开头的水果
+mysql> select f_name,f_id from fruits where f_name like 'b%';
++------------+------+
+| f_name     | f_id |
++------------+------+
+| blackberry | b1   |
+| banana     | t1   |
+| berry      | b2   |
++------------+------+
+3 rows in set (0.01 sec)
+
+查找所有“b”开头，以“y”结尾的水果
+mysql>  select f_name,f_id from fruits where f_name like 'b%y';
++------------+------+
+| f_name     | f_id |
++------------+------+
+| blackberry | b1   |
+| berry      | b2   |
++------------+------+
+2 rows in set (0.00 sec)
+
+2.下划线通配符'_',一次只能匹配任意一个字符
+mysql> select f_name,f_id from fruits where f_name like '____y';
++--------+------+
+| f_name | f_id |
++--------+------+
+| berry  | b2   |
++--------+------+
+1 row in set (0.00 sec)
+
+查询空值
+查询customers表中c_email为空的记录的c_id,c_name,c_email字段值
+select c_id,c_name,c_email
+
+
+
+
+
+
+
